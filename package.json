@@ -1,0 +1,12 @@
+{
+  "name": "renya",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "express": "~4.14.0",
+    "forever-monitor": "~1.7.0"
+  }
+}
