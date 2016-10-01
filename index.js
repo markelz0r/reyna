@@ -1,9 +1,11 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var cookieSession = require('cookie-session')
 //var forever = require('forever-monitor');
 
 app.use(express.static('public'));
+
 
 
 app.get('/', function (req, res) {
