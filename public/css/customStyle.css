@@ -1,0 +1,65 @@
+body{
+      	background-color: black;
+       color: white;
+        background-image: url("../back.jpg");
+        background-repeat:no-repeat;
+        -webkit-background-size:cover;
+        -moz-background-size:cover;
+        -o-background-size:cover;
+        background-size:cover;
+        background-position:center;
+        background-attachment: fixed;
+	    }
+
+      #logo {
+          width: 50%;
+          height: auto;
+          margin-top: 10px;
+          /*background-color: white;*/
+      }
+      .insta {
+
+          width: auto;
+            height: 50px;
+            margin-right: 5px;
+        }
+        .vk{
+
+          width: auto;
+            height: 40px;            
+            margin-top: 5px;
+        }
+      .price {
+        display: inline-block;
+        background-color: black;
+        color: white;
+        margin: 5px;
+        padding: 5px;
+        margin-left: 0;
+      }
+
+      .glyphicon-flash{
+            color: yellow;
+        }
+
+      #bootstrap_ov .thumbnail{
+        background-color: rgba(255,255,255,0.50);
+        border-color: black;
+      }
+
+    .footerText{
+      padding-top: 15px;
+    }
+
+     #mainContent{
+            margin-bottom: 100px;
+      }
+
+      #shoppingCard{
+        background-color: white;
+        color: black;
+        padding: 20px;
+        border-radius: 15px;
+        margin-top: 10px;
+      }
+
