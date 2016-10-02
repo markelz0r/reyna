@@ -16,6 +16,12 @@ app.get('/gallery', function (req, res) {
      res.sendFile(path.join(__dirname+'/gallery.html'));
 });
 
+app.get('/checkout', function (req, res) {
+     res.sendFile(path.join(__dirname+'/checkout.html'));
+});
+
+
+app
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
