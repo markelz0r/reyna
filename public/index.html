@@ -124,8 +124,12 @@
                         <h4 class="item_price price">2499 <i class="fa fa-rub" aria-hidden="true"></i></h4>
                         <p class="pull-right"><a href="javascript:;" class="item_add btn btn-primary" role="button"><i class="fa fa-cart-plus" aria-hidden="true"></i> В корзину</a> 
                             <script type="text/javascript">
-                                simpleCart.checkoutTo = PayPal;
-                                simpleCart.email = "you@yours.com";
+                             simpleCart({
+                                checkout: { 
+                                    type: "SendForm" , 
+                                    url: "http://example.com/your/custom/checkout/url" 
+                            } 
+                        });
                             </script>
                         </p>
                     </div>
