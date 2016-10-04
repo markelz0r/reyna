@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="simpleCart.js"></script>
+    
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Renya</title>
 
@@ -37,7 +37,9 @@
                     <div class="card" id="shoppingCard">
                       <div class="card-block">
                         <h4 class="card-title">Sopping Cart</h4>
-                        <div class="simpleCart_items"></div>
+                            <div class="item-container">
+
+                            </div>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                       </div>
                     </div>
@@ -122,15 +124,8 @@
                     <div class="caption simpleCart_shelfItem">
                         <h3 class="item_name">Футболка Renya classic</h3>
                         <h4 class="item_price price">2499 <i class="fa fa-rub" aria-hidden="true"></i></h4>
-                        <p class="pull-right"><a href="javascript:;" class="item_add btn btn-primary" role="button"><i class="fa fa-cart-plus" aria-hidden="true"></i> В корзину</a> 
-                            <script type="text/javascript">
-                             simpleCart({
-                                checkout: { 
-                                    type: "SendForm" , 
-                                    url: "/checkout" 
-                            } 
-                        });
-                            </script>
+                        <p class="pull-right"><a href="" onclick="addItem('bijans sex toy', 777)" class="btn btn-primary" role="button"><i class="fa fa-cart-plus" aria-hidden="true"></i> В корзину</a> 
+                            
                         </p>
                     </div>
                 </div>
@@ -266,6 +261,7 @@
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" src="cart.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="js/bootstrap.min.js"></script>
   <script src="https://use.fontawesome.com/9c012823b9.js"></script>
