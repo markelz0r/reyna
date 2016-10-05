@@ -13,8 +13,10 @@ else
 $(function() {
     var i = -1,ii=cartArr.cartItems.length;
     while (++i<ii) {
-    	$('.item-container').append('<div id="item_cart_title">'+cartArr.cartItems[i].title+'</div>');
-	 	$('.item-container').append('<div id="item_cart_price">'+cartArr.cartItems[i].price+'</div>');
+    	$('.item-container').append('<tr>');
+    	$('.item-container').append('<td id="item_cart_title">'+cartArr.cartItems[i].title+'</td>');
+	 	$('.item-container').append('<td id="item_cart_price">'+cartArr.cartItems[i].price+'</td>');
+	 	$('.item-container').append('</tr>');	 		 	
     }
 });
 
@@ -28,8 +30,8 @@ function addItem (title, price) {
 	    if (localStorage.cart !== 'undefined') {
 	    	//cartArr.push(item);
 	 		localStorage.setItem ('cart', cartArr.localStorageCart());
-	 		$('.item-container').append('<div id="item_cart_title">'+item.title+'</div>');
-	 		$('.item-container').append('<div id="item_cart_price">'+item.price+'</div>');
+	 		$('.item-container').append('<tr><td id="item_cart_title">'+cartArr.cartItems[i].title+'</td>');
+	 		$('.item-container').append('<td id="item_cart_price">'+cartArr.cartItems[i].price+'</td></tr>');
 		}
 
 }
