@@ -1,3 +1,15 @@
+
+var cartArr;
+if (typeof(localStorage.cart) !== 'undefined' && localStorage.cart != ""){
+	cartArr = new cart(JSON.parse(localStorage.cart));
+}
+else
+{
+	cartArr = new cart();
+	localStorage.cart = '';
+}
+
+
 $(function() {
     var i = -1,ii=cartArr.cartItems.length;
     while (++i<ii) {
@@ -8,14 +20,6 @@ $(function() {
 
 
 
-var cartArr;
-if (localStorage.cart !== 'undefined' && localStorage.cart != ""){
-	cartArr = new cart(JSON.parse(localStorage.cart));
-}
-else
-{
-	cartArr = new cart();
-}
 
 function addItem (title, price) {
 
@@ -30,6 +34,9 @@ function addItem (title, price) {
 
 }
 
+
+
+
 // function cartItem(title,price)
 // {
 // 	this.title = title;
@@ -43,7 +50,7 @@ function cart()
 	this.cartItems = [];
 	this.DEFAULT_ITEM_TITLE = "Bijans sex toy";
 	this.DEFAULT_PRICE = 99.99;
-	console.log(arguments);
+	//console.log(arguments);
 	if(arguments.length>0&&arguments[0] instanceof Array)
 	{
 		var i = -1,ii=arguments[0].length;
@@ -138,7 +145,7 @@ function cartItem(cart)
 			console.log(3,this.title)
 		}
 	}else{
-		this.price = typeof(arguments[2])!="undefined"&&!isNaN(arguments[2])&&arguments[2]>=0?arguments[2]:cart.DEFAULT_PRICE;
+	//	this.price = typeof(arguments[2])!="undefined"&&!isNaN(arguments[2])&&arguments[2]>=0?arguments[2]:cart.DEFAULT_PRICE;
 		this.title = typeof(arguments[1])=="string"?arguments[1]:cart.DEFAULT_ITEM_TITLE;
 		console.log('biatch '+typeof(arguments[2]));
 
