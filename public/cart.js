@@ -140,13 +140,7 @@ function cartItem(cart)
 	}else{
 		this.price = typeof(arguments[2])!="undefined"&&!isNaN(arguments[2])&&arguments[2]>=0?arguments[2]:cart.DEFAULT_PRICE;
 		this.title = typeof(arguments[1])=="string"?arguments[1]:cart.DEFAULT_ITEM_TITLE;
+		console.log('biatch '+typeof(arguments[2]));
 
 	}
 }
-
-
-
-//thingy = new cartItem("Bijan's sex toy",1000);
-
-
-//emptyArrayCanBeAnyNameHere = [new cartItem("Bijan's Breakfast",3)];
