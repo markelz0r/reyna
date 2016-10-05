@@ -30,8 +30,10 @@ function addItem (title, price) {
 	    if (localStorage.cart !== 'undefined') {
 	    	//cartArr.push(item);
 	 		localStorage.setItem ('cart', cartArr.localStorageCart());
-	 		$('.item-container').append('<tr><td id="item_cart_title">'+cartArr.cartItems[i].title+'</td>');
-	 		$('.item-container').append('<td id="item_cart_price">'+cartArr.cartItems[i].price+'</td></tr>');
+	 		$('.item-container').append('<tr>');
+	 		$('.item-container').append('<td id="item_cart_title">'+title+'</td>');
+	 		$('.item-container').append('<td id="item_cart_price">'+price+'</td>');
+			$('.item-container').append('</tr>');	
 		}
 
 }
@@ -131,7 +133,7 @@ function cartItem(cart)
 		if(typeof(arguments[1])=="object")
 		{
 			this.title = arguments[1].title || cart.DEFAULT_TITLE_ITEM;
-			this.price = (arguments[1].price && !isNaN(arguments.price) && arguments.price>=0 )|| cart.DEFAULT_PRICE;
+			this.price = (arguments[1].price && !isNaN(arguments[1].price) && arguments[1].price>=0 )|| cart.DEFAULT_PRICE;
 			console.log(1)
 		}
 		else if(typeof(arguments[1])=="string")
