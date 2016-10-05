@@ -117,6 +117,7 @@ function cartItem(cart)
 	this.toString = function(){
  		return JSON.stringify(this);
  	}
+ 	console.log('args  '+arguments)
  	if(arguments.length<1)
  	{
  		return false;
@@ -133,8 +134,10 @@ function cartItem(cart)
 		if(typeof(arguments[1])=="object")
 		{
 			this.title = arguments[1].title || cart.DEFAULT_TITLE_ITEM;
-			this.price = (arguments[1].price && !isNaN(arguments[1].price) && arguments[1].price>=0 )|| cart.DEFAULT_PRICE;
-			console.log(1)
+		//	this.price = (arguments[1].price && !isNaN(arguments.price) && arguments[1].price>=0 )|| cart.DEFAULT_PRICE;
+			this.price = arguments[1].price || cart.DEFAULT_PRICE;
+			console.log(arguments.price)
+			console.log('yes')
 		}
 		else if(typeof(arguments[1])=="string")
 		{
@@ -149,7 +152,7 @@ function cartItem(cart)
 			console.log(3,this.title)
 		}
 	}else{
-	//	this.price = typeof(arguments[2])!="undefined"&&!isNaN(arguments[2])&&arguments[2]>=0?arguments[2]:cart.DEFAULT_PRICE;
+		this.price = typeof(arguments[2])!="undefined"&&!isNaN(arguments[2])&&arguments[2]>=0?arguments[2]:cart.DEFAULT_PRICE;
 		this.title = typeof(arguments[1])=="string"?arguments[1]:cart.DEFAULT_ITEM_TITLE;
 		console.log('biatch '+typeof(arguments[2]));
 
