@@ -164,7 +164,8 @@ function Cart()
 	{
 		var cartItem = this.getItemByCategory(category);
 		if (cartItem == null) {
-			return this.cartItems.push(new CartItem(this, {title: title, price: price,category:category}));
+			this.cartItems.push(cartItem = new CartItem(this, {title: title, price: price,category:category}));
+			return cartItem;
 		}
 		else {
 			cartItem.changeQuantity(1);
