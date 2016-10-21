@@ -23,7 +23,22 @@
    
   </head>
   <body>
-    You've checked out :)
+
+<form method="post" action = "/sendCheckout">
+  First name:<br>
+  <input type="text" name="firstname"><br>
+  Last name:<br>
+  <input type="text" name="lastname"><br>
+  Phone Number:<br>
+  <input type="text" name="phone"><br>
+  Email:<br>
+  <input type="text" name="email"><br>
+  <input id="cart_items" name="cart">
+
+  <input type="submit" value=locar>
+</form>
+
+    
   </body>
   <div class="container">  
   <footer class="navbar navbar-inverse navbar-fixed-bottom">    
@@ -32,5 +47,25 @@
 </div>
 
 
+<div class="container">  
+      <footer class="navbar navbar-inverse navbar-fixed-bottom">    
+          <p class="text-muted text-center footerText">&copy; 2016 Dynamic Development Some Rights Reserved</p>    
+      </footer>
+  </div>
+
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" src="cart.js"></script>
+  <script type="text/javascript" src="checkout.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://use.fontawesome.com/9c012823b9.js"></script>
+
+
+</div>
+</body>
+
+</html>
 
   </html>
