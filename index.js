@@ -6,14 +6,19 @@ var cookieSession = require('cookie-session');
 var mongodb = require('mongodb');
 var mongoose = require ('mongoose');
 var ObjectID = require('mongodb').ObjectID;
+var Handlebars = require('handlebars');
 //var forever = require('forever-monitor');
 var fs = require ('fs');
+
+
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 mongoose.connect('mongodb://127.0.0.1:27017/reyna1')
 var conn = mongoose.connection;
+
+app.set('view engine', 'hbs');
 
 
 //load all files in models dir
@@ -27,6 +32,8 @@ app.get('/', function (req, res) {
      res.sendFile(path.join(__dirname+'/index.html'));
 });
 
+
+
 app.get('/gallery', function (req, res) {
      res.sendFile(path.join(__dirname+'/gallery.html'));
 });
@@ -36,6 +43,10 @@ app.get('/checkout', function (req, res) {
     
 });
 
+app.get('/admin', function (req, res) {
+
+    res.render(path.join(__dirname+'/templates/index.hbs'), {"_id" : "efwsd jn123123"});
+});
 
 app.get('/testDB/:id', function (req, res) {
  
@@ -44,7 +55,8 @@ mongoose.model('carts')
 .populate('_order')
 .exec(function (err, carts) {
   if (err) return handleError(err);
-  res.send(carts);
+ res.render(path.join(__dirname+'/templates/index.hbs'), carts);
+ //res.send(carts.cart);
 });
 
 })
