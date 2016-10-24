@@ -20,11 +20,22 @@
     <![endif]-->
 
 
-   
+  <style>
+  #cart_items {
+    display: none;
+
+  }
+  .order_form {
+    color: black;
+  }
+  </style>
   </head>
+
+
+
   <body>
 
-<form method="post" action = "/sendCheckout">
+<form method="post" action = "/sendCheckout" class = "order_form">
   First name:<br>
   <input type="text" name="firstname"><br>
   Last name:<br>
@@ -35,7 +46,7 @@
   <input type="text" name="email"><br>
   <input id="cart_items" name="cart">
 
-  <input type="submit" value=locar>
+  <input type="submit" value=Купить onsubmit='localStorage.cart = "" '>
 </form>
 
     
