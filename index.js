@@ -43,23 +43,57 @@ app.get('/checkout', function (req, res) {
     
 });
 
-app.get('/admin', function (req, res) {
+app.get('/deleteOrder/:id', function (req, res) {
+  mongoose.model('carts')
+  .findOne({ '_id': req.params.id })
+  .remove()
+  .exec();
 
-    res.render(path.join(__dirname+'/templates/index.hbs'), {"_id" : "efwsd jn123123"});
+  mongoose.model('carts')
+  .find()
+.populate('_order')
+.exec(function (err, carts) {
+  if (err) return handleError(err);
+   res.redirect('/admin');
+ res.render(path.join(__dirname+'/templates/admin.hbs'), carts);
+ //res.send(carts);
 });
+
+
+});
+
 
 app.get('/testDB/:id', function (req, res) {
  
 mongoose.model('carts')
-.findOne({ _id: req.params.id })
+//.findOne({ '_id': req.params.id })
+.find()
 .populate('_order')
 .exec(function (err, carts) {
   if (err) return handleError(err);
- res.render(path.join(__dirname+'/templates/index.hbs'), carts);
- //res.send(carts.cart);
+ res.render(path.join(__dirname+'/templates/admin.hbs'), carts);
+ //res.send(carts);
 });
 
-})
+});
+
+
+
+app.get('/admin', function (req, res) {
+ 
+mongoose.model('carts')
+//.findOne({ '_id': req.params.id })
+.find()
+.populate('_order')
+.exec(function (err, carts) {
+  if (err) return handleError(err);
+ res.render(path.join(__dirname+'/templates/admin.hbs'), carts);
+ //res.send(carts);
+});
+
+});
+
+
 
 app.post ('/sendCheckout', function (req, res) {
 var objectId = new ObjectID();

@@ -52,9 +52,8 @@ function populateCart(cart) {
 		$('#cartitem_'+cart.category).append('<td class="item_cart_title">'+cart.title+'</td>');
 		$('#cartitem_'+cart.category).append('<td class="item_cart_price">'+cart.price+'</td>');
 		//$('#cartitem_'+cart.category).append('<td class="item_cart_quantity">'+cart.quantity+'</td>');
-		$('#cartitem_'+cart.category).append('<td class="item_cart_quantity"><input type="number" class="item_cart_quantity_input" onchange="cartArr.itemQuantity(cartArr.getItemById('+cart.id+'),this.value)" value="'+cart.quantity+'"></td>');
-		$('#cartitem_'+cart.category).append('<td class="item_cart_delete"><button onclick="cartArr.removeItem('+cart.id+');\
-		$(\'#cartitem_'+cart.category+'\').remove();updateLocalStorage();">Delete</button></td>');
+		$('#cartitem_'+cart.category).append('<td class="item_cart_quantity"><input type="number" class="item_cart_quantity_input" onkeyup="cartArr.itemQuantity(cartArr.getItemById('+cart.id+'),this.value);updateLocalStorage();" value="'+cart.quantity+'"></td>');
+		$('#cartitem_'+cart.category).append('<td class="item_cart_delete"><button onclick="cartArr.removeItem('+cart.id+');$(\'#cartitem_'+cart.category+'\').remove();updateLocalStorage();">Delete</button></td>');
 
 	}
 	else
@@ -158,7 +157,10 @@ function Cart()
 		}
 	}
 	this.itemQuantity = function(item,quantity) {
-		console.log(item,quantity);
+		console.log(item,parseInt(quantity));
+		current = item.getQuantity();
+		console.log('current - '+current)
+		item.changeQuantity(parseInt(quantity)-current);
 	}
 	this.addItem = function(title,price,category)
 	{
@@ -235,6 +237,9 @@ function CartItem(cart)
 	this.toString = function(){
  		return JSON.stringify(this);
  	}
+ 	this.getQuantity = function() {
+ 		return this.quantity;
+ 	}
  	console.log('args  '+arguments)
  	if(arguments.length<1)
  	{
@@ -244,7 +249,7 @@ function CartItem(cart)
  		this.quantity +=quantity;
  		if (this.quantity<=0) {
  			
- 			this.cart.removeItem(this);s
+ 			this.cart.removeItem(this);
  			return 0;
  		}
  		return this.quantity;
