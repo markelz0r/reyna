@@ -56,7 +56,8 @@ body{
             margin-bottom: 100px;
       }
 
-      #shoppingCard{
+      #shoppingCart{
+        display: none;
         background-color: white;
         color: black;
         padding: 20px;
