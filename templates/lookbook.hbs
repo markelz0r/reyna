@@ -2,14 +2,12 @@
 
 <div class="container" id="mainContent">
   
-  <div class="row">
+{{#each this}}
+	{{#if link}}
     <div class=" col-xs-4 col-md-4">
-      <a href="1.jpg" data-title="T-shirt" data-lightbox="Shop" class="thumbnail">
-        <img src="1.jpg" alt="1" class="img-round">
-      </a>
+        <img src="{{images.thumbnail.url}}" alt="1" class="img-round">
     </div>
-
-</div>
-
+    {{/if}}
+{{/each}}
 
 {{>footer}}

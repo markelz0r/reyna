@@ -89,4 +89,7 @@ body{
       #cart_items {
         display: none;
       }
+      .inst_img {
+        height: 100px;
+      }
 

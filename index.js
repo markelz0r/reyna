@@ -25,6 +25,7 @@ var api = require('instagram-node').instagram();
 
 //521299889.1677ed0.2cdbfedf4c83428bb0cdabc4d1c5e15a
 api.use({
+  access_token: "521299889.8a118ea.643801a122584d13937c23e39075d17c",
   client_id: "8a118ea7c79942c9a0017317d47d13c4",
   client_secret: "312bd4403a5e414d9f373c0b22b78f7e"
 });
@@ -82,7 +83,7 @@ fs.readdirSync(__dirname + '/models').forEach(function(filename) {
 var redirect_uri = 'http://markel.info/handleauth';
 
 exports.authorize_user = function(req, res) {
-  res.redirect(api.get_authorization_url(redirect_uri, { scope: ['likes'], state: 'a state' }));
+  res.redirect(api.get_authorization_url(redirect_uri, { scope: ['public_content'], state: 'a state' }));
 };
 
 exports.handleauth = function(req, res) {
@@ -108,7 +109,10 @@ app.get('/handleauth', exports.handleauth);
 
 app.get('/inst/', function(req, res) {
 
+api.user_self_media_recent(10, function(err, medias, pagination, remaining, limit) {
 
+res.send(medias);
+});
 
 });
 
@@ -129,7 +133,15 @@ app.get('/', function(req, res) {
 
 
 app.get('/gallery', function(req, res) {
-    res.render(path.join(__dirname + '/templates/lookbook.hbs'));
+    api.user_media_recent('2123502833',{count : 20}, function(err, medias, pagination, remaining, limit) {
+      if (err) return res.send(err);
+        res.render(path.join(__dirname + '/templates/lookbook.hbs'), medias);
+    
+
+    });
+
+
+    
 });
 
 app.get('/checkout', function(req, res) {
