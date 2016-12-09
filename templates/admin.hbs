@@ -44,6 +44,9 @@
       display: inline-block;
 
     }
+    form {
+      color: black;
+    }
 </style>
 
    
@@ -52,43 +55,73 @@
 
   <body>
   
-{{#each this}}
-  {{#if this}}
+{{#each carts}}
+
 <div class = "order">
   <div class=order_details>
-           {{#if _order}} 
+
            <div class = "order_id">Номер заказа: {{this._id}} </div>
            <table class = "details_table">
-           <tr><td> {{_order.firstname}}</td></tr>
-           <tr><td> {{_order.lastname}}</td></tr>
+           <tr><td> {{_order.name}}</td></tr>
            <tr><td> {{_order.phone}}</td></tr>
            <tr><td> {{_order.email}}</td></tr>
+            <tr><td> {{_order.address}}</td></tr>
            <tr><td> {{_order.status}}</td></tr>
             </table>
             </div>
-            {{/if}}
+
             {{#each cart}}
-              {{#if this}}
+              
               <div calss=order_cart>
-              <table class = "cart_table">
-             <tr><td> {{this.title}}</td></tr>
-             <tr><td> {{this.price}} ₽</td></tr>
-             <tr><td> {{this.quantity}} шт.</td></tr>
-              </table>
+                <table class = "cart_table">
+               <tr><td> {{this.title}}</td></tr>
+               <tr><td> {{this.price}} ₽</td></tr>
+               <tr><td> {{this.quantity}} шт.</td></tr>
+                </table>
               </div>
 
-              
-              
-              {{/if}}
-              
             {{/each}}
-            {{#if cart}}
+            
             <a href = "/deleteOrder/{{this._id}}">Удалить заказ</a>
             <div class = "bord"></div>
             </div>
-            {{/if}}
-  {{/if}}
+            
+
 {{/each}}
+
+{{#each items}}
+<div class = "items">
+<div calss=item_listing>
+              <table class = "item_table">
+             <tr><td> {{title}}</td></tr>
+             <tr><td> {{price}} ₽</td></tr>
+              </table>
+              {{#each image_name}}
+                      <p>Фото {{@index}}</p>
+                      <a href = "/deletePhoto/{{this._id}}">Удалить фото</a><br>
+                      <img src=/item_img/{{this}} height="150px">
+              {{/each}}
+              <a href = "/deleteItem/{{_id}}">Удалить позицию</a>
+              </div>
+
+
+</div>
+{{/each}}
+
+<div class = "bord"></div>
+
+
+
+<form action = "/addShopItem" method="post" enctype="multipart/form-data">
+  Title:<br>
+  <input type="text" name="title" ><br>
+  Price:<br>
+  <input type="text" name="price" ><br>
+  Category:<br>
+  <input type="text" name="category"><br>
+  <input type="file"  name="image_up" multiple><br>
+  <input type="submit">
+</form>
 
 
 </body>

@@ -1,7 +1,7 @@
 body{
       	background-color: black;
        color: white;
-        background-image: url("../back.jpg");
+        background-image: url("/img/back.jpg");
         background-repeat:no-repeat;
         -webkit-background-size:cover;
         -moz-background-size:cover;
@@ -58,10 +58,35 @@ body{
 
       #shoppingCart{
         display: none;
-        background-color: white;
+        background-color: rgba(255,255,255,0.50);
         color: black;
         padding: 20px;
         border-radius: 15px;
+        border: 1px solid black;
         margin-top: 10px;
+      }
+      .item_image {
+      height: 0;
+      padding-bottom: 66.66666666666666666666667%;
+      background-size: cover;
+      }
+      .item_cart_quantity_input {
+        width: 45px;
+        height: 34px;
+        text-align: center;
+        border: 1px solid lightblue;
+        border-radius: 10px;
+
+      }
+      .table>tbody>tr>td {
+        vertical-align: middle;
+        border-top: 1px solid lightblue;
+      }
+
+      .item_category {
+        display: none;
+      }
+      #cart_items {
+        display: none;
       }
 

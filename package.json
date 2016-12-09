@@ -12,9 +12,11 @@
     "forever-monitor": "~1.7.0",
     "handlebars": "^4.0.5",
     "hbs": "^4.0.1",
+    "mime": "^1.3.4",
     "mongodb": "^2.2.10",
     "mongoose": "^4.6.4",
     "mu2": "^0.5.21",
+    "multer": "^1.2.0",
     "mustache": "^2.2.1"
   }
 }

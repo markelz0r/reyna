@@ -1,0 +1,56 @@
+
+    {{>header}}
+
+    <!--*****************************THUMBNAIL*****************************-->
+    <div class="container" id="mainContent">
+    {{#each this}}
+        {{#if this._id}}
+            <div class="col-sm-6 .col-md-6">
+                <div class="shop-item thumbnail">
+                    <div id="carousel-{{_id}}" class="carousel slide" data-ride="carousel">
+
+
+                        <!-- Wrapper for slides -->
+
+                        <div class="carousel-inner" role="listbox">
+                        {{#each image_name}}
+                            <div class="item item{{@index}}">
+                               <div class="item_image" style="background-image: url('/item_img/{{this}}');"></div>
+                              <!--  <img src="/item_img/{{this}}" alt="...">-->
+
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+                            {{/each}}
+
+
+
+                            <!-- Controls -->
+                            <a class="left carousel-control" href="#carousel-{{_id}}" role="button" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-{{_id}}" role="button" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="caption simpleCart_shelfItem">
+                        <h3 class="item_name">{{title}}</h3>
+                        <h4 class="item_price price">{{price}} <i class="fa fa-rub" aria-hidden="true"></i></h4>
+                        <input class="item_category" value="{{_id}}">
+                        <p class="pull-right"><div href="" onclick="addItem(this)" class="btn btn-primary" role="button"><i class="fa fa-cart-plus" aria-hidden="true"></i> В корзину</div> 
+                            
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+        {{/each}}
+    </div>
+
+
+    <!--*****************************FOOTER*****************************-->
+    {{>footer}}
+    

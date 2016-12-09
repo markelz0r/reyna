@@ -11,7 +11,7 @@ else
 
 
 $(function() {
-	if (localStorage.cart !== "[]") {
+	if (localStorage.cart !== "[]" || "") {
 		$("#shoppingCart").css("display","block");
 	}
 	
@@ -57,10 +57,11 @@ function populateCart(cart) {
 
 		$('.item-container').append('<tr id="cartitem_'+cart.category+'"></tr>');
 		$('#cartitem_'+cart.category).append('<td class="item_cart_title">'+cart.title+'</td>');
-		$('#cartitem_'+cart.category).append('<td class="item_cart_price">'+cart.price+'</td>');
+		$('#cartitem_'+cart.category).append('<td class="item_cart_price">'+cart.price+' &#x20bd;'+'</td>');
 		//$('#cartitem_'+cart.category).append('<td class="item_cart_quantity">'+cart.quantity+'</td>');
+		icon = '<i class="fa fa-trash" aria-hidden="true"></i>';
 		$('#cartitem_'+cart.category).append('<td class="item_cart_quantity"><input type="number" class="item_cart_quantity_input" onkeyup="cartArr.itemQuantity(cartArr.getItemById('+cart.id+'),this.value);updateLocalStorage();" value="'+cart.quantity+'"></td>');
-		$('#cartitem_'+cart.category).append('<td class="item_cart_delete"><button onclick="cartArr.removeItem('+cart.id+');$(\'#cartitem_'+cart.category+'\').remove();updateLocalStorage();">Delete</button></td>');
+		$('#cartitem_'+cart.category).append('<td class="item_cart_delete"><button type="button" class="btn btn-danger" onclick="cartArr.removeItem('+cart.id+');$(\'#cartitem_'+cart.category+'\').remove();updateLocalStorage();">'+icon+'</button></td>');
 	}
 	else
 	{

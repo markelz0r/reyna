@@ -2,10 +2,10 @@ var mongoose = require ('mongoose');
 var Schema = mongoose.Schema;
 
 var ordersSchema = new Schema ({
-		firstname : String, 
-		lastname : String,
+		name : String, 
 		phone: String,
 		email: String,
+		address: String,
 		status : Number,
 		cart : String
 
