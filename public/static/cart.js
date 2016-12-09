@@ -6,7 +6,7 @@ if (typeof(localStorage.cart) !== 'undefined' && localStorage.cart != ""){
 else
 {
 	cartArr = new Cart();
-	localStorage.cart = '';
+	localStorage.cart = '[]';
 }
 
 
