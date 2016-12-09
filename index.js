@@ -16,6 +16,18 @@ var hbs = require('hbs');
 
 
 
+var _ = require('underscore');
+var Promise = require('bluebird');
+
+
+
+var api = require('instagram-node').instagram();
+
+//521299889.1677ed0.2cdbfedf4c83428bb0cdabc4d1c5e15a
+api.use({
+  client_id: "8a118ea7c79942c9a0017317d47d13c4",
+  client_secret: "312bd4403a5e414d9f373c0b22b78f7e"
+});
 
 
 
@@ -28,7 +40,7 @@ var storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     crypto.pseudoRandomBytes(16, function (err, raw) {
-      cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+      cb(null, raw.tohString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
     });
   }
 });
@@ -49,16 +61,55 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+
+
 app.use(bodyParser.json());
 mongoose.connect('mongodb://127.0.0.1:27017/reyna1')
 var conn = mongoose.connection;
 
 
 
-
 //load all files in models dir
 fs.readdirSync(__dirname + '/models').forEach(function(filename) {
     if (~filename.indexOf('.js')) require(__dirname + '/models/' + filename)
+});
+
+
+
+
+
+
+var redirect_uri = 'http://markel.info/handleauth';
+
+exports.authorize_user = function(req, res) {
+  res.redirect(api.get_authorization_url(redirect_uri, { scope: ['likes'], state: 'a state' }));
+};
+
+exports.handleauth = function(req, res) {
+  api.authorize_user(req.query.code, redirect_uri, function(err, result) {
+    if (err) {
+      console.log(err.body);
+      res.send("Didn't work");
+    } else {
+      console.log('Yay! Access token is ' + result.access_token);
+      res.send('You made it!!');
+    }
+  });
+};
+
+
+//This is where users go
+app.get('/authorize_user', exports.authorize_user);
+// This is your redirect URI
+app.get('/handleauth', exports.handleauth);
+
+
+
+
+app.get('/inst/', function(req, res) {
+
+
+
 });
 
 
@@ -78,7 +129,7 @@ app.get('/', function(req, res) {
 
 
 app.get('/gallery', function(req, res) {
-    res.sendFile(path.join(__dirname + '/public/static/gallery.html'));
+    res.render(path.join(__dirname + '/templates/lookbook.hbs'));
 });
 
 app.get('/checkout', function(req, res) {
