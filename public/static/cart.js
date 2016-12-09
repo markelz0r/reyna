@@ -11,7 +11,7 @@ else
 
 
 $(function() {
-	if (localStorage.cart !== "[]" {
+	if (localStorage.cart !== ("" || "[]")) {
 		$("#shoppingCart").css("display","block");
 	}
 	
