@@ -90,7 +90,7 @@ table, th, td {
    .remove_item_btn {
     padding: 5px;
    } 
-   .itm_details_text {
-    margin: 5px;
-   }
+ .exit_btn {
+  margin-bottom: 20px;
+ }
 
