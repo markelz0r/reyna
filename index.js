@@ -433,6 +433,11 @@ for (var i = req.files.length - 1; i >= 0; i--) {
     res.redirect('/admin');
 });
 
+app.get('/reg', function(req, res) {
+  res.render(path.join(__dirname + '/templates/partials/reg.hbs'));
+ });
+
+
 app.get('/deletePhoto/:id', function(req, res) {
   mongoose.model('items')
   .findOne({image_name : req.params.id}, function (err, object) {
