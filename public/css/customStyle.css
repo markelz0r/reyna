@@ -94,4 +94,9 @@ body{
       padding-bottom: 100%;
       background-size: cover;
       }
+      .inst_desc {
+        display: none;
+        border: 1px solid red;    
+      }
+  
 
