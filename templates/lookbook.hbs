@@ -1,13 +1,26 @@
 {{>header}}
-
+<link rel="stylesheet" type="text/css" href="css/lightbox.css">
+<body>
 <div class="container" id="mainContent">
-  
 {{#each this}}
 	{{#if link}}
-    <div class=" col-xs-4 col-md-4">
-        <img src="{{images.thumbnail.url}}" alt="1" class="img-round">
+    <div class=" col-xs-3 col-md-3">
+	    <a href="{{images.standard_resolution.url}}" data-title="{{caption.text}}" data-lightbox="Shop" class="thumbnail">
+	        
+	        <div class="insta_image" style="background-image: url('{{images.low_resolution.url}}');"></div>
+	    </a>
     </div>
+
+    
     {{/if}}
 {{/each}}
+</div>
 
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/lightbox.min.js"></script>
+
+
+    
 {{>footer}}

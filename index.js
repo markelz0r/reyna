@@ -50,7 +50,7 @@ var upload = multer({ storage: storage });
 
 hbs.registerPartials(__dirname + '/templates/partials/');
 function loadPartials() {
-  
+  hbs.registerPartials(__dirname + '/templates/partials/');
 }
 
 
@@ -109,10 +109,7 @@ app.get('/handleauth', exports.handleauth);
 
 app.get('/inst/', function(req, res) {
 
-api.user_self_media_recent(10, function(err, medias, pagination, remaining, limit) {
-
-res.send(medias);
-});
+res.sendFile(__dirname + '/public/static/gallery.html');
 
 });
 
@@ -133,6 +130,7 @@ app.get('/', function(req, res) {
 
 
 app.get('/gallery', function(req, res) {
+  loadPartials();
     api.user_media_recent('2123502833',{count : 20}, function(err, medias, pagination, remaining, limit) {
       if (err) return res.send(err);
         res.render(path.join(__dirname + '/templates/lookbook.hbs'), medias);
