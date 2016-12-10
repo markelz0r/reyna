@@ -1,129 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Renya</title>
-
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/css/lightbox.css">
-    <link rel="stylesheet" type="text/css" href="/css/customStyle.css">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <style>
-    table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    }
-    .bord {
-      border: 2px solid green;
-      margin-top: 10px;
-    }
-    .order {
-      margin: 10px;
-    }
-    .order_details {
-  
-    }
-
-    .details_table {
-      width: 120px;
-      height: auto;
-    }
-    .cart_table {
-      width: 80px;
-      height: auto;
-      display: inline-block;
-
-    }
-    form {
-      color: black;
-    }
-</style>
-
-   
-  </head>
-
+{{>header}}
+<link rel="stylesheet" type="text/css" href="/css/admin.css">
 
   <body>
-  
+  <div class="container" id="mainContent">
 {{#each carts}}
 
 <div class = "order">
   <div class=order_details>
-
+  
+      <div class="presonal_details">
+      <div class="order_title">Клиент</div>
            <div class = "order_id">Номер заказа: {{this._id}} </div>
-           <table class = "details_table">
-           <tr><td> {{_order.name}}</td></tr>
-           <tr><td> {{_order.phone}}</td></tr>
-           <tr><td> {{_order.email}}</td></tr>
-            <tr><td> {{_order.address}}</td></tr>
-           <tr><td> {{_order.status}}</td></tr>
-            </table>
-            </div>
-
-            {{#each cart}}
-              
-              <div calss=order_cart>
-                <table class = "cart_table">
-               <tr><td> {{this.title}}</td></tr>
-               <tr><td> {{this.price}} ₽</td></tr>
-               <tr><td> {{this.quantity}} шт.</td></tr>
-                </table>
-              </div>
-
-            {{/each}}
+           <div class = "order_id">Имя: {{_order.name}}</div>
+           <div class = "order_id">Телефон: {{_order.phone}}</div>
+           <div class = "order_id">E-Mail: {{_order.email}}</div>
+           <div class = "order_id">Адрес: {{_order.address}}</div>
+           <div class = "order_id">Статус: {{_order.status}}</div>
+       </div>     
             
-            <a href = "/deleteOrder/{{this._id}}">Удалить заказ</a>
+            
+            
+              
+            <div class="items_table_cont">
+            <div class="order_title">Заказ</div>
+                <table class="items_table">
+                <tr>
+                <td>Наименование</td>
+                <td>Цена</td>
+                <td>Количество</td>
+                </tr>
+                {{#each cart}}
+                <tr>
+                <td>{{this.title}}</td>
+                <td>{{this.price}}</td>
+                <td>{{this.quantity}}</td>
+                </tr>
+                {{/each}}
+                </table>
+             </div> 
+
+            
+            
+           <div class="remove_btn"> <a href = "/deleteOrder/{{this._id}}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i>  Удалить заказ</a></div>
             <div class = "bord"></div>
             </div>
-            
+         </div>   
 
 {{/each}}
 
+
+
+
 {{#each items}}
 <div class = "items">
-<div calss=item_listing>
-              <table class = "item_table">
-             <tr><td> {{title}}</td></tr>
-             <tr><td> {{price}} ₽</td></tr>
-              </table>
+              <div class="itm_details">
+              <div calss="itm_details_text">ID: {{_id}} </div>
+            <div calss="itm_details_text">Наименование: {{title}} </div>
+            <div calss="itm_details_text">Цена: {{price}} ₽ </div>
+              
               {{#each image_name}}
-                      <p>Фото {{@index}}</p>
-                      <a href = "/deletePhoto/{{this._id}}">Удалить фото</a><br>
-                      <img src=/item_img/{{this}} height="150px">
+                      
+         <div style="position:relative;display: inline-block;">    
+          <img src=/item_img/{{this}} height="150px">
+          <div style="position:absolute;left:0;top:0;">
+        <a href = "/deletePhoto/{{this}}" class="btn btn-danger" width="100%"><i class="fa fa-trash" aria-hidden="true"></i></a>
+
+  </div>
+</div>
+
+
+
+
               {{/each}}
-              <a href = "/deleteItem/{{_id}}">Удалить позицию</a>
+<div class="remove_item_btn"><a href = "/deleteItem/{{_id}}" class ="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Удалить товар</a></div>
+              </div>
+              
               </div>
 
 
-</div>
+
 {{/each}}
 
 <div class = "bord"></div>
 
 
 
+
 <form action = "/addShopItem" method="post" enctype="multipart/form-data">
-  Title:<br>
-  <input type="text" name="title" ><br>
-  Price:<br>
-  <input type="text" name="price" ><br>
-  Category:<br>
-  <input type="text" name="category"><br>
-  <input type="file"  name="image_up" multiple><br>
-  <input type="submit">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Наименование</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Топовая футболка" name="title">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Цена</label>
+    <input type="number" class="form-control" id="exampleInputPassword1" placeholder="1990" name="price">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">Фотографии </label>
+    <input type="file"  name="image_up" multiple>
+  </div>
+  <button type="submit" class="btn btn-default">Добавить</button>
 </form>
+<div class = "bord"></div>
 
 
-</body>
 
-</html>
+
+
+</div>
+
+
+{{>footer}}
+

@@ -13,7 +13,7 @@ var mime = require('mime');
 //var forever = require('forever-monitor');
 var fs = require('fs');
 var hbs = require('hbs');
-
+var compression = require('compression');
 
 
 var _ = require('underscore');
@@ -41,7 +41,7 @@ var storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     crypto.pseudoRandomBytes(16, function (err, raw) {
-      cb(null, raw.tohString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+      cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
     });
   }
 });
@@ -57,6 +57,9 @@ function loadPartials() {
 
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(compression());
+
+
 
 
 app.use(bodyParser.urlencoded({
