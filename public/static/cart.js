@@ -6,13 +6,13 @@ if (typeof(localStorage.cart) !== 'undefined' && localStorage.cart != ""){
 else
 {
 	cartArr = new Cart();
-	localStorage.cart = '[]';
+	localStorage.cart = "[]";
 }
 
 
 $(function() {
 	if (localStorage.cart !== ("" || "[]")) {
-		$("#shoppingCart").css("display","block");
+		$("#shoppingCart").css("opacity","1");
 	}
 	
     var i = -1,ii=cartArr.cartItems.length;
@@ -30,7 +30,7 @@ $(function() {
 
 
 function addItem(button) {
-		$("#shoppingCart").css("display","block");
+		$("#shoppingCart").css("opacity","1");
 		var parent = button.parentNode;
 		console.log(button);
 		var titleTag = parent.getElementsByClassName('item_name')[0] ;
@@ -159,7 +159,7 @@ function Cart()
 			}
 		}
 		if (this.cartItems.length == 1) {
-			$("#shoppingCart").css("display","none");
+			$("#shoppingCart").css("opacity","0");
 		}
 		var itemIndex = this.cartItems.indexOf(item);
 		if(itemIndex>-1)

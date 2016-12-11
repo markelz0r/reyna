@@ -57,13 +57,16 @@ body{
       }
 
       #shoppingCart{
-        display: none;
+        display: block;
+        opacity: 0;
         background-color: rgba(255,255,255,0.50);
         color: black;
         padding: 20px;
         border-radius: 15px;
         border: 1px solid black;
         margin-top: 10px;
+        transition: opacity 1s ease;
+
       }
       .item_image {
       height: 0;
@@ -105,5 +108,16 @@ body{
     background-color: rgba(255,255,255,0.50);
     color: black;
     margin-bottom: 15px;
+  }
+  .main_vid {
+    border: 3px solid black;
+    height: 100%;
+  }
+  .order_form_el {
+    margin: 5px;
+  }
+  .cont {
+    opacity: 0;
+    transition: opacity 1s ease;
   }
 
