@@ -7,6 +7,7 @@ var itemsSchema = new Schema ({
 		image_name :  Array
 
 
+
 });
 
 mongoose.model('items', itemsSchema);

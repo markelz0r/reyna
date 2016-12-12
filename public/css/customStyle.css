@@ -68,6 +68,10 @@ body{
         transition: opacity 1s ease;
 
       }
+      .cart_wrap {
+        display: none;
+      }
+
       .item_image {
       height: 0;
       padding-bottom: 66.66666666666666666666667%;

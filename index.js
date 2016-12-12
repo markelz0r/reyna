@@ -192,16 +192,52 @@ app.get('/deleteOrder/:id', function(req, res) {
 
 });
 
+
+
+function deleteFiles(files, callback){
+  var i = files.length;
+  files.forEach(function(filepath){
+    fs.unlink(path.join(__dirname+'/public/item_img/')+filepath, function(err) {
+      i--;
+      if (err) {
+        callback(err);
+        return;
+      } else if (i <= 0) {
+        callback(null);
+      }
+    });
+  });
+}
+
+
+
 app.get('/deleteItem/:id', function(req, res) {
     mongoose.model('items')
-        .findOne({
-            '_id': req.params.id
-        })
-        .remove()
-        .exec();
+        .findOne({'_id': req.params.id}, function (err, object) {
+         
+         //   fs.unlink(path.join(__dirname+'/public/item_img/'+object.image_name[i]), function(err, i) {
+              
+          deleteFiles(object.image_name, function(err) {
+              if (err) {
+                console.log(err);
+              } else {
+                console.log('all files removed');
+                mongoose.model('items')
+                .findOne({'_id': req.params.id})
+                .remove()
+                .exec(); 
+              }
+          });
+            
+        
+        });
 
-    res.redirect('/admin');
-    // res.render(path.join(__dirname+'/templates/admin.hbs'), carts);
+
+    //   
+
+
+   res.redirect('/admin');
+    //res.render(path.join(__dirname+'/templates/admin.hbs'), carts);
     //res.send(carts);
 
 
@@ -234,6 +270,7 @@ app.get('/admin',ensureAuthenticated, function(req, res) {
         //.findOne({ '_id': req.params.id })
         .find()
         .populate('_order')
+        //.sort({"_order.date": "desc"})
         .exec(function(err, carts) {
             if (err) return handleError(err);
 
@@ -422,7 +459,7 @@ for (var i = req.files.length - 1; i >= 0; i--) {
   var itemsData = {
         title: req.body.title,
         price: req.body.price,
-        image_name: imgArr
+        image_name: imgArr,
     };
     
     
@@ -432,6 +469,33 @@ for (var i = req.files.length - 1; i >= 0; i--) {
     conn.collection('items').insert(itemsData);
     res.redirect('/admin');
 });
+
+
+
+
+app.get('/moveUp/:id', function(req, res) {
+
+mongoose.model('items')
+  .findOne({image_name : req.params.id})
+  .then(function(img) {
+    var index = img.image_name.indexOf(req.params.id);
+    var tmp = img.image_name[index];
+    if (index>0) {
+    img.image_name[index] = img.image_name[index-1];
+    img.image_name[index-1] = tmp;
+    img.markModified('image_name');
+    img.save();
+    }
+    res.redirect("/admin");  
+
+  })
+      
+  
+
+});
+  
+
+
 
 
 
@@ -450,6 +514,9 @@ app.get('/deletePhoto/:id', function(req, res) {
   object.save(function (err, updatedObj) {
     if (err) return handleError(err);
     //res.send(updatedObj);
+
+
+    fs.unlinkSync(path.join(__dirname+'/public/item_img/'+req.params.id)); 
     res.redirect('/admin');
  });
         
@@ -463,6 +530,7 @@ app.post('/sendCheckout', function(req, res) {
     console.log('email - ' + req.body.email);
     console.log('address - ' + req.body.address);
     console.log('ObjectID - ' + objectId);
+    console.log('Time - ' + Date.now());
     a = JSON.parse(req.body.cart);
 
     var cartsData = {
@@ -477,6 +545,7 @@ app.post('/sendCheckout', function(req, res) {
       phone: req.body.phone,
       email: req.body.email,
       address: req.body.address,
+      date: Date.now(),
       status : 0,
  
     };

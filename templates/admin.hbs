@@ -3,7 +3,7 @@
 
   <body>
   <div class="container" id="mainContent">
-  
+
   <div class="exit_btn"> <a href = "/logout" class="btn btn-primary btn-lg btn-block">Выход</a></div>
   <div class = "bord"></div>
 {{#each carts}}
@@ -14,6 +14,11 @@
       <div class="presonal_details">
       <div class="order_title">Клиент</div>
            <div class = "order_id">Номер заказа: {{this._id}} </div>
+           <div class = "order_id"> Время заказа: 
+                 <div class = "order_id" id="time{{@index}}">
+                  
+                 </div>
+           </div>
            <div class = "order_id">Имя: {{_order.name}}</div>
            <div class = "order_id">Телефон: {{_order.phone}}</div>
            <div class = "order_id">E-Mail: {{_order.email}}</div>
@@ -21,7 +26,10 @@
            <div class = "order_id">Статус: {{_order.status}}</div>
        </div>     
             
-            
+             <script>
+                   var d = new Date({{_order.date}});
+                    document.getElementById("time"+{{@index}}).innerHTML = d;
+                   </script> 
             
               
             <div class="items_table_cont">
@@ -67,7 +75,7 @@
           <img src=/item_img/{{this}} height="150px">
           <div style="position:absolute;left:0;top:0;">
         <a href = "/deletePhoto/{{this}}" class="btn btn-danger" width="100%"><i class="fa fa-trash" aria-hidden="true"></i></a>
-
+        {{#if @index}}<a href = "/moveUp/{{this}}" class="btn btn-primary" width="100%"><i class="fa fa-arrow-up" aria-hidden="true"></i></i></a>{{/if}}
   </div>
 </div>
 

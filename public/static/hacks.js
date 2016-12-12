@@ -9,3 +9,8 @@ function loadPage() {
 	console.log("Page loaded");
 
 }
+
+function loadTime(date,index) {
+	var d = new Date(date);
+	document.getElementById("time"+index).innerHTML = d;
+}
