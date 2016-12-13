@@ -165,6 +165,7 @@ a:hover, a:visited, a:link, a:active
 .no-touch .orderbtn:hover {
 background-color: black;
 color: white;
+cursor: pointer;
 }
 .item-container {
   font-size: 16px;

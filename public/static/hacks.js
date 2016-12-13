@@ -26,15 +26,17 @@ function mouseOut() {
 	$("#cart-total").css({"background-color" : "black", "color":"white"});
 }
 
-function mouseOver1() {
+function mouseOver1(id) {
 if (!("ontouchstart" in document.documentElement))
-		$(".price").css({"background-color" : "transparent", "color":"black"});
+		$("#pricen"+id).css({"background-color" : "transparent", "color":"black"});
 }
 
-function mouseOut1() {
-	$(".price").css({"background-color" : "black", "color":"white"});
+function mouseOut1(id) {
+	$("#pricen"+id).css({"background-color" : "black", "color":"white"});
 }
 
 if (!("ontouchstart" in document.documentElement)) {
 document.documentElement.className += " no-touch";
 }
+
+

@@ -39,8 +39,8 @@
                 </div>
                 <div class="caption shelfItem container-fluid " onclick="void(0)">
                     <div class="item_name">{{title}}</div>
-                    <div class="item_price price col-md-6 col-sm-12 col-xs-12">{{price}} <i class="fa fa-rub" aria-hidden="true"></i></div>
-                    <div class="add_to_cart col-md-6 col-sm-12 col-xs-12 hover" onmouseover="mouseOver1()" onmouseout="mouseOut1()" onclick="addItem(this);"><i class="fa fa-cart-plus" aria-hidden="true"></i>  В корзину</div>
+                    <div class="item_price price col-md-6 col-sm-12 col-xs-12" id="pricen{{@index}}">{{price}} <i class="fa fa-rub" aria-hidden="true"></i></div>
+                    <div class="add_to_cart col-md-6 col-sm-12 col-xs-12 hover" onmouseover="mouseOver1({{@index}})" onmouseout="mouseOut1({{@index}})" onclick="addItem(this);"><i class="fa fa-cart-plus" aria-hidden="true"></i>  В корзину</div>
 
 
                     <input class="item_category" value="{{_id}}">
