@@ -470,7 +470,23 @@ for (var i = req.files.length - 1; i >= 0; i--) {
     res.redirect('/admin');
 });
 
+app.post('/addImage/:id', upload.array('image_up'), function (req, res, next) {
+mongoose.model('items')
+  .findOne({_id : req.params.id})
+  .then(function(img){
+      for (var i = req.files.length - 1; i >= 0; i--) {
+        img.image_name.push(req.files[i].filename);
+      }
+      img.markModified('image_name');
+      img.save();
+      res.redirect("/admin");
 
+  })
+
+
+
+
+});
 
 
 app.get('/moveUp/:id', function(req, res) {
@@ -523,6 +539,19 @@ app.get('/deletePhoto/:id', function(req, res) {
  });
    });
 
+
+function getPrice(id) {
+
+console.log("id - "+id);
+mongoose.model('items')
+.findOne({_id : id}, function(err, object){
+    console.log('b.price ' + object.price);
+    return object.price;
+})
+
+
+}
+
 app.post('/sendCheckout', function(req, res) {
     var objectId = new ObjectID();
     console.log('name - ' + req.body.name);
@@ -531,30 +560,62 @@ app.post('/sendCheckout', function(req, res) {
     console.log('address - ' + req.body.address);
     console.log('ObjectID - ' + objectId);
     console.log('Time - ' + Date.now());
-    a = JSON.parse(req.body.cart);
+    var a = JSON.parse(req.body.cart);
+    //res.send(a);
+    a.forEach(function(object,index){
+      
+      mongoose.model('items')
+      .findOne({_id : object.category}, function(err, obj){
+                    
 
-    var cartsData = {
-        _order: objectId,
-        cart: a
-    }
- 
+                    a[index].price = obj.price;
 
-    var ordersData = {
-      _id: objectId,
-      name : req.body.name, 
-      phone: req.body.phone,
-      email: req.body.email,
-      address: req.body.address,
-      date: Date.now(),
-      status : 0,
- 
-    };
 
-    conn.collection('orders').insert(ordersData);
-    conn.collection('carts').insert(cartsData);
 
-});
 
+                    if (index == a.length-1) {
+
+                      var total = 0;
+                      for (var i = a.length - 1; i >= 0; i--) {
+                          total += a[i].price * a[i].quantity;
+                      }
+                        console.log("total -"+total);
+                        var cartsData = {
+                                  _order: objectId,
+                                  cart: a
+                              }
+
+
+
+                          var ordersData = {
+                          _id: objectId,
+                          name : req.body.name, 
+                          phone: req.body.phone,
+                          email: req.body.email,
+                          address: req.body.address,
+                          date: Date.now(),
+                          total: total,
+                          status : 0,
+                     
+                        };
+
+                  conn.collection('orders').insert(ordersData);
+                  conn.collection('carts').insert(cartsData);
+                  //res.render(path.join(__dirname + '/templates/postcheckout.hbs'));
+
+                    }
+    
+    });
+    
+
+    });
+            
+
+    })
+    
+    
+
+    
 
 
 

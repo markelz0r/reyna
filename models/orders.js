@@ -8,6 +8,7 @@ var ordersSchema = new Schema ({
 		address: String,
 		status : Number,
 		date: Number,
+		total : Number,
 		cart : String
 
 

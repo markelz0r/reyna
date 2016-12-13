@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Boxcutter';
+  src: url('/fonts/boxcutter-bold-webfont.ttf');
+}
+
 body{
       	background-color: black;
        color: white;
@@ -10,6 +15,10 @@ body{
         background-position:center;
         background-attachment: fixed;
 	    }
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}
 
       #logo {
           width: 50%;
@@ -32,11 +41,15 @@ body{
         }
       .price {
         display: inline-block;
+        text-align: center;
         background-color: black;
         color: white;
-        margin: 5px;
         padding: 5px;
-        margin-left: 0;
+        font-size: 30px;
+        font-weight: 200;
+        margin-top: 1px;
+
+        transition: background-color .3s ease;
       }
 
       .glyphicon-flash{
@@ -46,6 +59,7 @@ body{
       #bootstrap_ov .thumbnail{
         background-color: rgba(255,255,255,0.50);
         border-color: black;
+        border-width: 2px;
       }
 
     .footerText{
@@ -89,6 +103,9 @@ body{
         vertical-align: middle;
         border-top: 1px solid lightblue;
       }
+      .table {
+        margin-bottom: 0;
+      }
 
       .item_category {
         display: none;
@@ -124,4 +141,74 @@ body{
     opacity: 0;
     transition: opacity 1s ease;
   }
+#cart-total {
+  font-size: 25px;
+  border: 1px solid black;
+  color: white;
+  padding: 5px;
+  background-color: black;
+  transition: background-color .3s ease;
+  font-weight: 300;
+
+}
+.orderbtn {
+  margin-top: 5px;
+  background-color: lightgrey;
+  vertical-align: middle;
+  border:1px solid black;
+  font-size: 20px;
+  color: black;
+    padding: 5px;
+    transition: background-color .3s ease;
+  
+}
+.no-touch .orderbtn:hover {
+background-color: black;
+color: white;
+}
+.item-container {
+  font-size: 16px;
+}
+.add_to_cart {
+  display: inline-block;
+
+  text-align: center;
+  font-size: 30px;
+        font-weight: 200;
+        margin-top: 1px;
+        padding: 5px;
+  background-color: grey;
+   font-weight: 100;
+  color: white;
+  transition: background-color .3s ease;
+
+}
+
+
+
+.no-touch .add_to_cart:hover{
+  background-color: black;
+  cursor: pointer;
+}
+
+.item_name{
+  font-family: 'Boxcutter' , 'serif';
+
+     -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: white;
+
+
+  text-align: center;
+  font-size: 60px;
+  padding: 3px;
+  background-color: black;
+  color: black;
+}
+.shop-item{
+  padding: 0px;
+}
+.shelfItem{
+  padding: 0px!important;
+}
+
 

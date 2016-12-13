@@ -9,16 +9,18 @@ else
 	localStorage.cart = "[]";
 }
 
+cartArr.generateTotal();
 
 $(function() {
 	if (localStorage.cart !== ("" || "[]")) {
 		$(".cart_wrap").css("display","block");
 		
 		setTimeout(function(){ $("#shoppingCart").css("opacity","1"); }, 1);
-
 	}
 	
+
     var i = -1,ii=cartArr.cartItems.length;
+    total();
     while (++i<ii) {
     //	$('.item-container').append('<tr id="cartitem_'+cartArr.cartItems[i].id+'"></tr>');
     //	$('#cartitem_'+cartArr.cartItems[i].id).append('<td id="item_cart_title">'+cartArr.cartItems[i].title+'</td>');
@@ -28,6 +30,9 @@ $(function() {
     }
 });
 
+$('#someInput').bind('input', function() { 
+    $(this).val() // get the current value of the input field.
+});
 
 
 
@@ -50,6 +55,7 @@ function addItem(button) {
 	    	//cartArr.push(item);
 	 		updateLocalStorage();
 	 		populateCart(item);
+
 	 		
 		}
 		//$("#shoppingCart").css("display","block");
@@ -64,20 +70,32 @@ function populateCart(cart) {
 		$('#cartitem_'+cart.category).append('<td class="item_cart_price">'+cart.price+' &#x20bd;'+'</td>');
 		//$('#cartitem_'+cart.category).append('<td class="item_cart_quantity">'+cart.quantity+'</td>');
 		icon = '<i class="fa fa-trash" aria-hidden="true"></i>';
-		$('#cartitem_'+cart.category).append('<td class="item_cart_quantity"><input type="number" class="item_cart_quantity_input" onkeyup="cartArr.itemQuantity(cartArr.getItemById('+cart.id+'),this.value);updateLocalStorage();" value="'+cart.quantity+'"></td>');
+		$('#cartitem_'+cart.category).append('<td class="item_cart_quantity"><input type="number" min="1" class="item_cart_quantity_input" onkeyup="cartArr.itemQuantity(cartArr.getItemById('+cart.id+'),this.value);updateLocalStorage();" onclick="cartArr.itemQuantity(cartArr.getItemById('+cart.id+'),this.value);updateLocalStorage();" value="'+cart.quantity+'"></td>');
 		$('#cartitem_'+cart.category).append('<td class="item_cart_delete"><button type="button" class="btn btn-danger" onclick="cartArr.removeItem('+cart.id+');$(\'#cartitem_'+cart.category+'\').remove();updateLocalStorage();">'+icon+'</button></td>');
+		total();
 	}
 	else
 	{
+		total();
 		document.getElementById("cartitem_"+cart.category).getElementsByClassName("item_cart_quantity_input")[0].value = cart.quantity;
+		
+		
 	}
 
 
 }
 
+
+
+function total() {
+	$('#cart-total').text(cartArr.TOTAL+" ₽");
+}
+
 function updateLocalStorage()
 {
+	total();
 	localStorage.setItem ('cart', cartArr.localStorageCart());
+	
 }
 
 
@@ -95,7 +113,15 @@ function Cart()
 	this.DEFAULT_ITEM_TITLE = "Bijans sex toy";
 	this.DEFAULT_PRICE = 99.99;
 	this.DEFAULT_CATEGORY = undefined;
+	this.TOTAL = 0;
 
+	this.generateTotal = function() {
+		this.TOTAL = 0;
+		for (var i = this.cartItems.length - 1; i >= 0; i--) {
+			this.TOTAL += this.cartItems[i].price * this.cartItems[i].quantity;
+		}
+
+	}
 	this.getItemById = function(id)
 	{
 		var index = this.cartItems.length;
@@ -116,6 +142,8 @@ function Cart()
 			return null;
 		}
 	}
+
+
 
 	this.getItemByCategory = function(category)
 	{
@@ -138,6 +166,7 @@ function Cart()
 		}
 	}
 
+
 	this.itemIndex = function(item)
 	{
 		var index = this.cartItems.length;
@@ -156,7 +185,9 @@ function Cart()
 		
 		if(!(item instanceof CartItem))
 		{
+
 			item = this.getItemById(item);
+			this.TOTAL -= item.price * item.quantity;
 			if(item == null)
 			{
 				return undefined;
@@ -178,10 +209,15 @@ function Cart()
 		console.log(item,parseInt(quantity));
 		current = item.getQuantity();
 		console.log('current - '+current)
+		if (current>quantity)
+			this.TOTAL -= item.price
+		if (current<quantity)
+			this.TOTAL += item.price
 		item.changeQuantity(parseInt(quantity)-current);
 	}
 	this.addItem = function(title,price,category)
 	{
+		this.TOTAL += price;
 		var cartItem = this.getItemByCategory(category);
 		if (cartItem == null) {
 			this.cartItems.push(cartItem = new CartItem(this, {title: title, price: price,category:category}));

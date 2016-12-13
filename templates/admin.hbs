@@ -1,4 +1,17 @@
 {{>header}}
+<script type="text/javascript">
+  
+function openDialog(id) 
+{
+$('#addImg'+id).click();
+}
+
+
+function submitImg(id) {
+$('#addImgForm{{@index}}'+id).submit();
+}
+
+</script>
 <link rel="stylesheet" type="text/css" href="/css/admin.css">
 
   <body>
@@ -23,6 +36,7 @@
            <div class = "order_id">Телефон: {{_order.phone}}</div>
            <div class = "order_id">E-Mail: {{_order.email}}</div>
            <div class = "order_id">Адрес: {{_order.address}}</div>
+           <div class = "order_id" >Сумма заказа: {{_order.total}} ₽</div>
            <div class = "order_id">Статус: {{_order.status}}</div>
        </div>     
             
@@ -77,13 +91,28 @@
         <a href = "/deletePhoto/{{this}}" class="btn btn-danger" width="100%"><i class="fa fa-trash" aria-hidden="true"></i></a>
         {{#if @index}}<a href = "/moveUp/{{this}}" class="btn btn-primary" width="100%"><i class="fa fa-arrow-up" aria-hidden="true"></i></i></a>{{/if}}
   </div>
+
+
 </div>
 
 
 
 
               {{/each}}
+<div class="addImg_btn btn btn-success" id="addImg_btn{{@index}}" onclick="openDialog({{@index}})"><i class="fa fa-plus-square" aria-hidden="true"></i></a></div>              
+
+
+
 <div class="remove_item_btn"><a href = "/deleteItem/{{_id}}" class ="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Удалить товар</a></div>
+
+
+
+<form action = "/addImage/{{_id}}" method="post" enctype="multipart/form-data" style="display: none" id="addImgForm{{@index}}">
+  <input type="file" onchange="submitImg({{@index}})" name="image_up" id="addImg{{@index}}" multiple>
+</form>
+
+
+
               </div>
               
               </div>
