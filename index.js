@@ -515,9 +515,9 @@ mongoose.model('items')
 
 
 
-//app.get('/reg', function(req, res) {
-//  res.render(path.join(__dirname + '/templates/partials/reg.hbs'));
-// });
+app.get('/reg', function(req, res) {
+res.render(path.join(__dirname + '/templates/partials/reg.hbs'));
+});
 
 
 app.get('/deletePhoto/:id', function(req, res) {

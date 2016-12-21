@@ -16,6 +16,7 @@ function loadTime(date,index) {
 	document.getElementById("time"+index).innerHTML = d;
 }
 
+/*
 function mouseOver() {
 if (!("ontouchstart" in document.documentElement))
 		$("#cart-total").css({"background-color" : "transparent", "color":"black"});
@@ -39,4 +40,4 @@ if (!("ontouchstart" in document.documentElement)) {
 document.documentElement.className += " no-touch";
 }
 
-
+*/
