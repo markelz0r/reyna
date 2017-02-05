@@ -78,7 +78,6 @@ a:hover, a:visited, a:link, a:active
         color: black;
         padding: 20px;
         border-radius: 15px;
-        border: 1px solid black;
         margin-top: 10px;
         transition: opacity 1s ease;
 
@@ -136,7 +135,10 @@ a:hover, a:visited, a:link, a:active
     height: 100%;
   }
   .order_form_el {
-    margin: 5px;
+    display: inline-block;
+    width: 100%;
+    color: black;
+    font-size: 20px;
   }
   .cont {
     opacity: 0;
@@ -215,5 +217,43 @@ cursor: pointer;
 .shelfItem{
   padding: 0px!important;
 }
+.center_cont {
+  display: block;
+  border: 1px solid red;
 
-
+}
+.order_form{
+  display: inline-block;
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+}
+.form-control {
+  margin: 5px;
+  display: inline-block;
+  width: 80%;
+}
+.order_icon {
+  display: inline-block;
+  width: 20px;
+}
+.order_container {
+  display: block;
+  border: 1px solid red;
+}
+.delivery {
+  display: inline-block;
+  float: right;
+  border:1px solid black;
+  width: 49%;
+  height: 198px;
+  border-radius: 10px;
+}
+.payment {
+  display: inline-block;
+  height: 200px;
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 10px;
+}

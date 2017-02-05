@@ -32,7 +32,7 @@ var api = require('instagram-node').instagram();
 
 //521299889.1677ed0.2cdbfedf4c83428bb0cdabc4d1c5e15a
 api.use({
-  access_token: "521299889.8a118ea.643801a122584d13937c23e39075d17c",
+  access_token: "521299889.8a118ea.ff6fb8cea7aa47488d438dec84392946",
   client_id: "8a118ea7c79942c9a0017317d47d13c4",
   client_secret: "312bd4403a5e414d9f373c0b22b78f7e"
 });
@@ -163,7 +163,7 @@ app.get('/', function(req, res) {
 
 app.get('/gallery', function(req, res) {
   loadPartials();
-    api.user_media_recent('2123502833',{count : 20}, function(err, medias, pagination, remaining, limit) {
+    api.user_media_recent('2123502833',{count : 18}, function(err, medias, pagination, remaining, limit) {
       if (err) return res.send(err);
         res.render(path.join(__dirname + '/templates/lookbook.hbs'), medias);
     

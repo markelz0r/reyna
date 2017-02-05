@@ -3,24 +3,23 @@
 
   <body>
 
-<div class="container" id="mainContent">
-  
 
-<div class="order_form .col-md-offset-3">
+<!--
+<div class="checkout_form">
   <form method="post" action = "/sendCheckout" class = "order_form" onsubmit='localStorage.cart = "[]" '>
-<div class="input-group order_form_el col-xs-4">
+<div class="input-group order_form_el col-xs-4 col-md-6">
     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
     <input id="name" type="text" class="form-control" name="name" placeholder="Имя">
   </div>
-  <div class="input-group order_form_el col-xs-4">
+  <div class="input-group order_form_el col-xs-4 col-md-6">
     <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
     <input id="phone" type="text" class="form-control" name="email" placeholder="E-Mail">
   </div> 
-  <div class="input-group order_form_el col-xs-4">
+  <div class="input-group order_form_el col-xs-4 col-md-6">
     <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
     <input id="phone" type="text" class="form-control" name="phone" placeholder="Телефон">
   </div>
-  <div class="input-group order_form_el col-xs-4">
+  <div class="input-group order_form_el col-xs-4 col-md-6">
     <span class="input-group-addon"><i class="glyphicon glyphicon-globe" ></i></span>
     <input id="password" type="text" class="form-control" name="address" placeholder="Адрес">
   </div>
@@ -28,7 +27,53 @@
   <button type="submit" class="btn btn-default" >Купить</button>
 
 </form>
+-->
+
+<div class="container" id="mainContent">
+  
+
+
+<form method="post" action = "/sendCheckout" class = "order_form" onsubmit='localStorage.cart = "[]" '>
+  <div class="order_form_el col-xs-4 col-md-6">
+    <div class="order_icon">
+      <i class="fa fa-user" aria-hidden="true"></i>
+    </div>
+    <input id="name" type="text" class="form-control" name="name" placeholder="Имя">
+  </div>
+  <div class="order_form_el col-xs-4 col-md-6">
+    <div class="order_icon">
+      <i class="fa fa-envelope" aria-hidden="true"></i>
+    </div>
+    <input id="email" type="text" class="form-control" name="email" placeholder="E-Mail">
+  </div> 
+  <div class="order_form_el col-xs-4 col-md-6">
+    <div class="order_icon">
+      <i class="fa fa-phone-square" aria-hidden="true"></i>
+    </div>
+    <input id="phone" type="text" class="form-control" name="phone" placeholder="Телефон">
+  </div>
+  <div class="order_form_el col-xs-4 col-md-6">
+    <div class="order_icon">
+      <i class="fa fa-home" aria-hidden="true"></i>
+    </div>
+    <input id="address" type="text" class="form-control" name="address" placeholder="Адрес">
+  </div>
+</form>
+
+
+
+<div class="delivery">
+<h2>Доставка</h2>
 </div>
+
+
+<div class="payment">
+<h2>Оплата</h2>
+</div>
+
+</div>
+
+
 
 
 </div>
@@ -39,7 +84,6 @@
     
   </body>
   
-
 
 
 {{>footer}}
